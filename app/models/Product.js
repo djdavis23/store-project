@@ -12,15 +12,7 @@ class Product {
   }
 
   purchase(number) {
-    if (number <= this.quantity) {
-      this.quantity -= number;
-      return number;
-    }
-    else {
-      let result = this.quantity;
-      this.quantity = 0;
-      return result;
-    }
+    this.quantity -= number;
   }
 
 }

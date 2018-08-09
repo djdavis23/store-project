@@ -13,6 +13,16 @@ class StoreService {
   get cart() {
     return skiStore.cart;
   }
+
+  addToCart(item) {
+    let status = skiStore.addToCart(item);
+    return status;
+  }
+
+  purchase() {
+    return skiStore.purchase();
+  }
+
 }
 
 

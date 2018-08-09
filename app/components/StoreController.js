@@ -1,9 +1,12 @@
 import StoreService from "./StoreService.js"
 
-let skiStoreService = new StoreService();
-
 const invDisplay = document.getElementById("inventory");
 const cartDisplay = document.getElementById("cart");
+const statusBox = document.getElementById("status-box");
+
+let skiStoreService = new StoreService();
+let statusMsg = "Enjoy your shopping!"
+
 
 function draw() {
   let inventory = skiStoreService.products
@@ -17,16 +20,18 @@ function draw() {
         <h2>${item.name}</h2>
         <h3>Price: $${item.price.toFixed(2)}</h3>
         <h3>In Stock: ${item.quantity}</h3>
-        <button onclick="app.controllers.skiStoreController.addToCart('${item.name}')">Add to Cart</button>
+        <button id="${item.name}" onclick="app.controllers.skiStoreController.addToCart('${item.name}')">Add to Cart</button>
       </div>
       `
   });
   invDisplay.innerHTML = template;
 
+  statusBox.innerText = statusMsg;
+
   let cartTemp = ``;
   cart.items.forEach(function (item) {
     cartTemp += `
-      <h3>Item: ${item.name}  Quantity: ${item.quantity}</h3>
+      <h3>Item: ${item.stockItem.name} Quantity: ${item.orderQuantity}</h3>
     `
   });
   cartDisplay.innerHTML = `
@@ -35,33 +40,31 @@ function draw() {
     ${cartTemp}
   </div>
   <div>
-    <h3>Subtotal:  ${cart.subtotal}</h3>
-    <h3>Tax:  ${cart.tax}</h3>
-    <h3>Total:  ${cart.total}</h3>
+    <h3>Subtotal:  $${cart.subtotal.toFixed(2)}</h3>
+    <h3>Tax:  $${cart.tax.toFixed(2)}</h3>
+    <h3>Total:  $${cart.total.toFixed(2)}</h3>
     <button onclick="app.controllers.skiStoreController.purchase()">Check Out</button>
+
 
   </div>
 
   
   `
-
-
-
 }
 
 class StoreController {
   constructor() {
     draw();
-
-
   }
 
   addToCart(item) {
-
+    statusMsg = skiStoreService.addToCart(item);
+    draw();
   }
 
   purchase() {
-
+    statusMsg = skiStoreService.purchase();
+    draw();
   }
 }
 
