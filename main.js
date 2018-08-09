@@ -7,5 +7,5 @@ class App {
     }
   }
 }
-console.log("Hello from main.js")
+
 window.app = new App()

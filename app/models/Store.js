@@ -108,9 +108,4 @@ class Store {
 
 }
 
-
-
-
-console.log("Hello from Store.js")
-
 export default Store

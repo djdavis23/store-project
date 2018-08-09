@@ -23,12 +23,9 @@ class StoreService {
     return skiStore.purchase();
   }
 
+  updateTill() {
+    return skiStore.til.toFixed(2);
+  }
+
 }
-
-
-
-
-
-
-console.log("Hello from StoreService.js")
 export default StoreService

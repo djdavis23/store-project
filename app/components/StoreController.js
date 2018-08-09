@@ -12,6 +12,7 @@ function draw() {
   let inventory = skiStoreService.products
   let cart = skiStoreService.cart
   let template = ``
+  let revenue = skiStoreService.updateTill();
 
   inventory.forEach(function (item) {
     template += `
@@ -52,14 +53,12 @@ function draw() {
     <h3>Tax:  $${cart.tax.toFixed(2)}</h3>
     <h3>Total:  $${cart.total.toFixed(2)}</h3>
     <button onclick="app.controllers.skiStoreController.purchase()">Check Out</button>
-
-
-  </div>
-
-  
+  </div>  
+  `
+  document.getElementById("register").innerHTML = `
+    <h2>Don's Till:  $${revenue}</h2>
   `
 }
-
 class StoreController {
   constructor() {
     draw();
@@ -75,10 +74,5 @@ class StoreController {
     draw();
   }
 }
-
-
-
-
-console.log("Hello from StoreController.js")
 
 export default StoreController

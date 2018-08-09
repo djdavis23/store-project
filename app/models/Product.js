@@ -17,6 +17,4 @@ class Product {
 
 }
 
-console.log("Hello from Product.js")
-
 export default Product

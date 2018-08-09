@@ -7,6 +7,10 @@ h1 {
   text-align: center;
 }
 
+#register {
+  color: lightgrey
+}
+
 #status-box {
   background: blue;
   color: yellow;
