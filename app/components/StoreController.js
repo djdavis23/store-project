@@ -16,7 +16,7 @@ function draw() {
   inventory.forEach(function (item) {
     template += `
       <div>
-        <div><img src="${item.image}" alt="skiis image" /></div>
+        <div><img src="${item.image}" width="150" alt="skiis image" /></div>
         <h2>${item.name}</h2>
         <h3>Price: $${item.price.toFixed(2)}</h3>
         <h3>In Stock: ${item.quantity}</h3>
@@ -26,12 +26,20 @@ function draw() {
   });
   invDisplay.innerHTML = template;
 
+  inventory.forEach(function (item) {
+    if (item.quantity == 0) {
+      const button = document.getElementById(item.name)
+      button.setAttribute('disabled', 'true');
+      button.innerText = "Out of Stock"
+    }
+  })
+
   statusBox.innerText = statusMsg;
 
   let cartTemp = ``;
   cart.items.forEach(function (item) {
     cartTemp += `
-      <h3>Item: ${item.stockItem.name} Quantity: ${item.orderQuantity}</h3>
+      <h3>Item: ${item.name} Quantity: ${item.orderQuantity}</h3>
     `
   });
   cartDisplay.innerHTML = `
